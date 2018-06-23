@@ -80,16 +80,35 @@
         </a>
       </li>
     </ul>
+    <button @click="increment()">+</button>
+    <br>
+    count : {{ count }}
+    <br>
+    getCount : {{ getCount }}
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods: {
+    ...mapActions({
+      increment: 'order/increment'
+    })
+  },
+  computed: {
+    ...mapGetters({
+      getCount: 'order/getCount'
+    }),
+    ...mapState('order', {
+      count: 'count'
+    })
   }
 }
 </script>
